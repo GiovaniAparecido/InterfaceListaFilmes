@@ -66,7 +66,9 @@ namespace ListaFilmesAssistidos
             {
                 // O objeto agarra pega todos o textos editados no visual e armzena na classe.
                 Filme agarra = new Filme(nometxt.Text, generocbox.Text, dateTimePicker1.Text, localtxt.Text);
-
+                errorProvider1.SetError(nometxt, "");
+                errorProvider1.SetError(generocbox, "");
+                errorProvider1.SetError(localtxt, "");
                 salvar();
 
                 //Verifica se a chave já existe
@@ -87,10 +89,21 @@ namespace ListaFilmesAssistidos
 
             else
             {
-                MessageBox.Show("Erro!! Digite corretamente os campos", "Informação", MessageBoxButtons.OK);
+                if (nometxt.Text == "")
+                {
+                    errorProvider1.SetError(nometxt, "Digite seu nome!");
+                }
+                if(generocbox.Text == "")
+                {
+                    errorProvider1.SetError(generocbox, "Digite o gênero do Filme!");
+                }
+                if(localtxt.Text == "")
+                {
+                    errorProvider1.SetError(localtxt, "Digite o local onde o filme foi assistido!");
+                }
             }
         }
-        
+
         public void voltainicialenableds()
         {
             btsalvar.Enabled = true;
@@ -117,6 +130,12 @@ namespace ListaFilmesAssistidos
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //bool bStatus = true;
+            //if (nometxt.Text == "")
+            //{
+            //    errorProvider1.SetError(nometxt, "Digite seu nome");
+            //    bStatus = false;
+            //}
             Cadastrar();
         }
 
@@ -130,7 +149,7 @@ namespace ListaFilmesAssistidos
             foreach (ListViewItem PegaItem in listView1.SelectedItems)
             {
                 List<Filme> lis = dicionario[listView1.SelectedItems[0].Group.Header];
-                
+
                 //Exclui da Lista Filme.
                 for (int I = 0; I < lis.Count; I++)
                 {
@@ -166,7 +185,7 @@ namespace ListaFilmesAssistidos
                         Limpar();
                     }
                 }
-                
+
             }
         }
 
@@ -214,11 +233,23 @@ namespace ListaFilmesAssistidos
 
         private void Pesquisagenerocbx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(Pesquisagenerocbx.Text != "")
+            if (Pesquisagenerocbx.Text != "")
             {
                 listView2.Visible = true;
                 btpesquisa.Visible = true;
             }
         }
+
+        private void nometxt_Validating(object sender, CancelEventArgs e)
+        {
+            //ValidateNome();
+        }
+
+        //public bool bStatus;
+
+        //public void ValidateNome()
+        //{
+            
+        //}
     }
 }
