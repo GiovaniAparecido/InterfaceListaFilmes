@@ -92,6 +92,7 @@ namespace ListaFilmesAssistidos
                 if (nometxt.Text == "")
                 {
                     errorProvider1.SetError(nometxt, "Digite seu nome!");
+                    
                 }
                 if(generocbox.Text == "")
                 {
@@ -130,12 +131,7 @@ namespace ListaFilmesAssistidos
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //bool bStatus = true;
-            //if (nometxt.Text == "")
-            //{
-            //    errorProvider1.SetError(nometxt, "Digite seu nome");
-            //    bStatus = false;
-            //}
+            TextoGeneroCbox();
             Cadastrar();
         }
 
@@ -231,25 +227,32 @@ namespace ListaFilmesAssistidos
 
         }
 
-        private void Pesquisagenerocbx_SelectedIndexChanged(object sender, EventArgs e)
+        public void TextoGeneroCbox()
         {
-            if (Pesquisagenerocbx.Text != "")
+            if (generocbox.Text != "Ação" && generocbox.Text != "Aventura" && generocbox.Text != "Comédia" && generocbox.Text != "Terror" && generocbox.Text != "Suspense" && generocbox.Text != "Documentário Infantil" && generocbox.Text != "Romance" && generocbox.Text != "FicçãoCientífica")
             {
-                listView2.Visible = true;
-                btpesquisa.Visible = true;
+                generocbox.Text = "";
             }
         }
 
-        private void nometxt_Validating(object sender, CancelEventArgs e)
+        private void generocbox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            //ValidateNome();
+            TextoGeneroCbox();
         }
 
-        //public bool bStatus;
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            TextoGeneroCbox();
+        }
 
-        //public void ValidateNome()
-        //{
-            
-        //}
+        private void nometxt_TextChanged(object sender, EventArgs e)
+        {
+            TextoGeneroCbox();
+        }
+
+        private void localtxt_TextChanged(object sender, EventArgs e)
+        {
+            TextoGeneroCbox();
+        }
     }
 }
