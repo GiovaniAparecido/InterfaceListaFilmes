@@ -90,7 +90,6 @@ namespace ListaFilmesAssistidos
                 MessageBox.Show("Erro!! Digite corretamente os campos", "Informação", MessageBoxButtons.OK);
             }
         }
-
         
         public void voltainicialenableds()
         {
