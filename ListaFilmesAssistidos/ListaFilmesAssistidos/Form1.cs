@@ -35,6 +35,18 @@ namespace ListaFilmesAssistidos
                 Itens.SubItems.Add(localtxt.Text);
                 listView1.Items.Add(Itens);
 
+                foreach(ListViewItem item in listView1.Items)
+                {
+                    if ((item.Index % 2) == 0)
+                    {
+                        item.BackColor = Color.Beige;
+                    }
+                    else
+                    {
+                        item.BackColor = Color.White;
+                    }
+                }
+
                 if (dicionario.ContainsKey(generocbox.Text))
                 {
                     List<Filme> pegarpassar = dicionario[generocbox.Text];
@@ -90,18 +102,17 @@ namespace ListaFilmesAssistidos
             else
             {
                 if (nometxt.Text == "")
-                {
                     errorProvider1.SetError(nometxt, "Digite seu nome!");
-                    
-                }
-                if(generocbox.Text == "")
-                {
+                else
+                    errorProvider1.SetError(nometxt, "");
+                if (generocbox.Text == "")
                     errorProvider1.SetError(generocbox, "Digite o gênero do Filme!");
-                }
-                if(localtxt.Text == "")
-                {
+                else
+                    errorProvider1.SetError(generocbox, "");
+                if (localtxt.Text == "")
                     errorProvider1.SetError(localtxt, "Digite o local onde o filme foi assistido!");
-                }
+                else
+                    errorProvider1.SetError(localtxt, "");
             }
         }
 
@@ -137,7 +148,7 @@ namespace ListaFilmesAssistidos
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            nometxt.Focus();
         }
 
         public void apagar()
@@ -235,24 +246,41 @@ namespace ListaFilmesAssistidos
             }
         }
 
-        private void generocbox_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void nometxt_Enter(object sender, EventArgs e)
         {
-            TextoGeneroCbox();
+            ((TextBox)sender).BackColor = Color.Beige;
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void nometxt_Leave(object sender, EventArgs e)
         {
-            TextoGeneroCbox();
+            ((TextBox)sender).BackColor = Color.White;
         }
 
-        private void nometxt_TextChanged(object sender, EventArgs e)
+        private void generocbox_Enter(object sender, EventArgs e)
         {
-            TextoGeneroCbox();
+            ((ComboBox)sender).BackColor = Color.Beige;
         }
 
-        private void localtxt_TextChanged(object sender, EventArgs e)
+        private void generocbox_Leave(object sender, EventArgs e)
         {
-            TextoGeneroCbox();
+
+            ((ComboBox)sender).BackColor = Color.White;
         }
+
+        private void localtxt_Enter_1(object sender, EventArgs e)
+        {
+            ((TextBox)sender).BackColor = Color.Beige;
+        }
+
+        private void localtxt_Leave_1(object sender, EventArgs e)
+        {
+            ((TextBox)sender).BackColor = Color.White;
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
