@@ -97,20 +97,21 @@ namespace ListaFilmesAssistidos
                     dicionario.Add(generocbox.Text, pegarpassar);
                     Limpar();
                 }
+                nometxt.Focus();
             }
 
             else
             {
                 if (nometxt.Text == "")
-                    errorProvider1.SetError(nometxt, "Digite seu nome!");
+                    errorProvider1.SetError(nometxt, "Campo obrigatório");
                 else
                     errorProvider1.SetError(nometxt, "");
                 if (generocbox.Text == "")
-                    errorProvider1.SetError(generocbox, "Digite o gênero do Filme!");
+                    errorProvider1.SetError(generocbox, "Campo obrigatório");
                 else
                     errorProvider1.SetError(generocbox, "");
                 if (localtxt.Text == "")
-                    errorProvider1.SetError(localtxt, "Digite o local onde o filme foi assistido!");
+                    errorProvider1.SetError(localtxt, "Campo obrigatório");
                 else
                     errorProvider1.SetError(localtxt, "");
             }
@@ -148,7 +149,7 @@ namespace ListaFilmesAssistidos
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            nometxt.Focus();
+            localtxt.Focus();
         }
 
         public void apagar()
